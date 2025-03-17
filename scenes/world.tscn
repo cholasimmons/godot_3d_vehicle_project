@@ -1,0 +1,77 @@
+[gd_scene load_steps=14 format=3 uid="uid://ohmtindv14vd"]
+
+[ext_resource type="PackedScene" uid="uid://2vr7iss5gkxu" path="res://ui/main_gui.tscn" id="1_nnsk1"]
+[ext_resource type="Script" uid="uid://vvk7ck7yktqv" path="res://scripts/VehicleDummy.gd" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://4s1a1fttv8s3" path="res://scripts/Engine.gd" id="3_k0juu"]
+[ext_resource type="AudioStream" uid="uid://cj8l7nmys4gn7" path="res://audio/diesel-idle-26317.mp3" id="4_7r4gi"]
+[ext_resource type="Script" uid="uid://bgp8qf7hjiumu" path="res://scripts/PedalInput.gd" id="4_71j4m"]
+[ext_resource type="Script" uid="uid://dhwvrfrj7c3lj" path="res://scripts/Steering.gd" id="5_71j4m"]
+[ext_resource type="AudioStream" uid="uid://bjl6e1uqfux61" path="res://audio/car-not-starting-40006.mp3" id="5_w7kh3"]
+[ext_resource type="Script" uid="uid://diib6q476o0tr" path="res://scripts/Transmission.gd" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://dk0mkkln2bx5y" path="res://scenes/bus.tscn" id="7_4mrxx"]
+[ext_resource type="Script" uid="uid://br6t3slrv6yfj" path="res://scripts/3DCamera.gd" id="7_i7141"]
+[ext_resource type="AudioStream" uid="uid://cmdlfgbugge28" path="res://audio/car-gear-shift.mp3" id="9_e3hyu"]
+
+[sub_resource type="Curve" id="Curve_71j4m"]
+_data = [Vector2(0, 0), 0.0, 0.844944, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0juu"]
+albedo_color = Color(0.420603, 0.220708, 0.104583, 1)
+
+[node name="World" type="Node3D"]
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="GUI" instance=ExtResource("1_nnsk1")]
+
+[node name="VehicleDummy" type="Node3D" parent="."]
+script = ExtResource("2_rwgxs")
+engine = NodePath("Engine")
+transmission = NodePath("Transmission")
+pedal = NodePath("PedalInput")
+steering = NodePath("Steering")
+
+[node name="Engine" type="Node" parent="VehicleDummy"]
+script = ExtResource("3_k0juu")
+torque_curve = SubResource("Curve_71j4m")
+inertia = 0.2
+engine_health = 0.4
+idle_sound = ExtResource("4_7r4gi")
+ignition_sound = ExtResource("5_w7kh3")
+
+[node name="PedalInput" type="Node" parent="VehicleDummy"]
+script = ExtResource("4_71j4m")
+
+[node name="Steering" type="Node" parent="VehicleDummy"]
+script = ExtResource("5_71j4m")
+
+[node name="Transmission" type="Node" parent="VehicleDummy"]
+script = ExtResource("6_qfnet")
+gear_shift_sound = ExtResource("9_e3hyu")
+
+[node name="BUS" parent="VehicleDummy" instance=ExtResource("7_4mrxx")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+
+[node name="VehicleBody" type="CSGBox3D" parent="VehicleDummy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.370239, 0)
+visible = false
+size = Vector3(1, 0.710205, 2.14673)
+
+[node name="Ground" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+size = Vector3(100, 0.1, 100)
+material = SubResource("StandardMaterial3D_k0juu")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.481019, 0.593277, -0.645478, 0, 0.736251, 0.676709, 0.87671, -0.32551, 0.354151, 0, 3.98373, 0)
+light_energy = 1.3
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.630852, 0.245054, -0.736189, 0, 0.948815, 0.315831, 0.775903, -0.199243, 0.598562, -5.37397, 3.48873, 5.3119)
+current = true
+fov = 52.0
+far = 500.0
+script = ExtResource("7_i7141")
+target = NodePath("../VehicleDummy")

@@ -1,0 +1,159 @@
+[gd_scene load_steps=2 format=3 uid="uid://2vr7iss5gkxu"]
+
+[ext_resource type="Script" uid="uid://clpbqcidcm1tx" path="res://scripts/ui.gd" id="1_2lw0j"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2lw0j")
+
+[node name="ColorRectL" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 1
+offset_right = 181.0
+offset_bottom = 152.0
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.313726)
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 119.0
+offset_bottom = 128.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="BoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Engine" type="Label" parent="BoxContainer/HBoxContainer/VBox"]
+layout_mode = 2
+text = "Engine: "
+
+[node name="Gear" type="Label" parent="BoxContainer/HBoxContainer/VBox"]
+layout_mode = 2
+text = "Gear: "
+
+[node name="RPM" type="Label" parent="BoxContainer/HBoxContainer/VBox"]
+layout_mode = 2
+text = "RPM: "
+
+[node name="Speed" type="Label" parent="BoxContainer/HBoxContainer/VBox"]
+layout_mode = 2
+text = "Speed: "
+
+[node name="VBoxValues" type="VBoxContainer" parent="BoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="EngineValue" type="Label" parent="BoxContainer/HBoxContainer/VBoxValues"]
+layout_mode = 2
+text = "OFF"
+
+[node name="GearValue" type="Label" parent="BoxContainer/HBoxContainer/VBoxValues"]
+layout_mode = 2
+text = "N"
+
+[node name="RPMValue" type="Label" parent="BoxContainer/HBoxContainer/VBoxValues"]
+layout_mode = 2
+text = "0"
+
+[node name="SpeedValue" type="Label" parent="BoxContainer/HBoxContainer/VBoxValues"]
+layout_mode = 2
+text = "0"
+
+[node name="ColorRectR" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -181.0
+offset_bottom = 152.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.313726)
+
+[node name="BoxContainer2" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -166.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 128.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer2"]
+layout_mode = 2
+
+[node name="VBox2" type="VBoxContainer" parent="BoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Steering" type="Label" parent="BoxContainer2/HBoxContainer/VBox2"]
+layout_mode = 2
+text = "Steering: "
+
+[node name="Accelerator" type="Label" parent="BoxContainer2/HBoxContainer/VBox2"]
+layout_mode = 2
+text = "Accelerate: "
+
+[node name="Brake" type="Label" parent="BoxContainer2/HBoxContainer/VBox2"]
+layout_mode = 2
+text = "Brake: "
+
+[node name="VBox2Values" type="VBoxContainer" parent="BoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SteeringValue" type="Label" parent="BoxContainer2/HBoxContainer/VBox2Values"]
+layout_mode = 2
+text = "0"
+
+[node name="AcceleratorValue" type="Label" parent="BoxContainer2/HBoxContainer/VBox2Values"]
+layout_mode = 2
+text = "0"
+
+[node name="BrakeValue" type="Label" parent="BoxContainer2/HBoxContainer/VBox2Values"]
+layout_mode = 2
+text = "0"
+
+[node name="BoxContainer3" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRectL2" type="ColorRect" parent="BoxContainer3"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.313726)
+
+[node name="VehicleStatus" type="Label" parent="BoxContainer3/ColorRectL2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.5
+offset_top = -35.0
+offset_right = 60.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Loading Vehicle..."
+horizontal_alignment = 1
+vertical_alignment = 1
